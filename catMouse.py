@@ -16,24 +16,27 @@ for i in xrange(len(locs)):
 	currentPos = xy
 	traveled += distance
 	path.append((distance, time))
-dontStop = True
-i = 0
+elapsedTime = 0
+traveled = 0
+i = 10
 counter = 0
 ic = 0
 n = len(path)
-while dontStop:
+while True:
 	i += .001
 	for item in path:
-		if ic == 0 and item[1] * i >= item[0]:
+		distance, time = item[0], item[1]
+		if (time - elapsedTime) * i * (m ** ic) >= (distance - traveled):
 			counter += 1
-		else:
-			if item[1] * i * (m ** ic) >= item[0]:
-				counter += 1
+			elapsedTime += distance / i
+			traveled += distance
 		ic += 1
 	if counter == n:
 		break
 	counter = 0
 	ic = 0
+	extraTime = 0
+	traveled = 0
 print i
 
 
