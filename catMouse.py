@@ -18,24 +18,23 @@ for i in xrange(len(locs)):
 	path.append((distance, time))
 elapsedTime = 0
 traveled = 0
-i = 10
+i = 23
 counter = 0
 ic = 0
 n = len(path)
 while True:
 	i += .001
 	for item in path:
-		distance, time = item[0], item[1]
-		if (time - elapsedTime) * i * (m ** ic) >= (distance - traveled):
+		if (item[1] - elapsedTime) * i * (m ** ic) >= (item[0] - traveled):
 			counter += 1
-			elapsedTime += distance / i
-			traveled += distance
+			elapsedTime += item[0] / i
+			traveled += item[0]
 		ic += 1
 	if counter == n:
 		break
 	counter = 0
 	ic = 0
-	extraTime = 0
+	elapsedTime = 0
 	traveled = 0
 print i
 
